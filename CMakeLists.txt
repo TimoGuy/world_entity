@@ -18,7 +18,12 @@ if(MSVC)
 endif()
 
 # Static library build.
-add_library(${PROJECT_NAME} STATIC)
+add_library(${PROJECT_NAME}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/guid.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/guid.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/world_entity.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/world_entity.h
+)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
@@ -26,14 +31,4 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${cglm_INCLUDE_DIR}
-)
-
-target_sources(${PROJECT_NAME}
-    PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/world_entity_public.h
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/guid.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/guid.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/world_entity.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/world_entity.h
 )
